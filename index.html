@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Expense Tracker</h1>
+    </header>
+
+    <div id="global-error" class="banner banner-error" hidden></div>
+
+    <main>
+      <section class="panel" aria-labelledby="categories-heading">
+        <h2 id="categories-heading">Categories</h2>
+
+        <p id="category-empty-state" class="empty-state" hidden>
+          No categories yet — create one to get started.
+        </p>
+        <ul id="category-list" class="category-list" hidden></ul>
+
+        <form id="category-form" class="inline-form">
+          <label for="category-name-input" class="sr-only">Category name</label>
+          <input type="text" id="category-name-input" placeholder="New category name" required />
+          <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+        <p id="category-error" class="field-error" hidden></p>
+      </section>
+
+      <section class="panel" aria-labelledby="totals-heading">
+        <h2 id="totals-heading">Totals by Category</h2>
+
+        <div class="month-filter-row">
+          <label for="month-filter">Filter by month</label>
+          <input type="month" id="month-filter" />
+          <button type="button" id="clear-month-filter" class="btn btn-small">All time</button>
+        </div>
+
+        <ul id="totals-list" class="totals-list"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="expenses-heading">
+        <h2 id="expenses-heading">Expenses</h2>
+
+        <p id="expense-empty-state" class="empty-state" hidden>No expenses yet.</p>
+        <table id="expense-table" class="expense-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="expense-list"></tbody>
+        </table>
+
+        <p id="no-categories-note" class="empty-state" hidden>
+          Add a category before you can add expenses.
+        </p>
+
+        <form id="expense-form" class="stacked-form" hidden>
+          <h3 id="expense-form-title">Add Expense</h3>
+
+          <label for="expense-category-select">Category</label>
+          <select id="expense-category-select" required>
+            <option value="">Select a category…</option>
+          </select>
+
+          <label for="expense-amount-input">Amount (€)</label>
+          <input type="text" id="expense-amount-input" inputmode="decimal" placeholder="0.00" required />
+
+          <label for="expense-date-input">Date</label>
+          <input type="date" id="expense-date-input" required />
+
+          <label for="expense-description-input">Description (optional)</label>
+          <input type="text" id="expense-description-input" placeholder="Description" />
+
+          <p id="expense-form-error" class="field-error" hidden></p>
+
+          <div class="form-actions">
+            <button type="submit" id="expense-submit-btn" class="btn btn-primary">Add Expense</button>
+            <button type="button" id="expense-cancel-edit-btn" class="btn" hidden>Cancel</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
