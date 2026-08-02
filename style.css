@@ -1,217 +1,334 @@
+/* ============================================
+   Expense Tracker — Visual Design
+   Palette: navy #1A2744 / teal #00C9A7
+   ============================================ */
+
+:root {
+  --navy: #1A2744;
+  --navy-light: #2A3A5C;
+  --teal: #00C9A7;
+  --teal-dark: #00A88A;
+  --bg: #F7F9FB;
+  --card-bg: #FFFFFF;
+  --border: #E4E9F0;
+  --text: #1A2744;
+  --text-muted: #64748B;
+  --danger: #E85D6E;
+  --danger-bg: #FDEDEF;
+  --shadow: 0 1px 2px rgba(26, 39, 68, 0.04), 0 4px 16px rgba(26, 39, 68, 0.06);
+  --radius: 10px;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: #f4f5f7;
-  color: #1f2430;
+  padding: 48px 24px 80px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-.app {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 24px 16px 64px;
+/* ---------- Page heading ---------- */
+
+h1 {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  position: relative;
+  padding-left: 16px;
 }
 
-.app-header h1 {
-  font-size: 1.75rem;
-  margin: 0 0 24px;
-}
-
-.panel {
-  background: #fff;
-  border: 1px solid #e2e4e9;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.panel h2 {
-  margin-top: 0;
-  font-size: 1.15rem;
-}
-
-.sr-only {
+h1::before {
+  content: "";
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--teal);
 }
 
-.empty-state {
-  color: #6b7280;
-  font-style: italic;
+/* ---------- Card sections ---------- */
+/* Targets the direct-child section wrappers used for
+   Categories / Totals by Category / Expenses / Add Expense */
+
+body > div,
+body > section {
+  max-width: 640px;
+  margin: 0 auto 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 28px;
 }
 
-.banner {
-  padding: 12px 16px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  font-size: 0.95rem;
+h2 {
+  margin: 0 0 18px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
 
-.banner-error {
-  background: #fdecec;
-  color: #9b1c1c;
-  border: 1px solid #f5b5b5;
+/* ---------- Inputs & selects ---------- */
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="month"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.field-error {
-  color: #9b1c1c;
-  font-size: 0.9rem;
-  margin: 6px 0 0;
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0, 201, 167, 0.15);
+  background: var(--card-bg);
 }
 
-.category-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px;
-}
-
-.category-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.category-item:last-child {
-  border-bottom: none;
-}
-
-.category-name {
-  font-weight: 500;
-}
-
-.inline-form {
-  display: flex;
-  gap: 8px;
-}
-
-.inline-form input {
-  flex: 1;
-}
-
-.stacked-form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-width: 420px;
-}
-
-.stacked-form label {
-  font-size: 0.85rem;
-  color: #4b5563;
-  margin-top: 8px;
-}
-
-.form-actions {
-  display: flex;
-  gap: 8px;
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
   margin-top: 12px;
 }
 
-input,
-select {
-  padding: 8px 10px;
-  border: 1px solid #d0d3d9;
-  border-radius: 6px;
-  font-size: 0.95rem;
+label:first-of-type {
+  margin-top: 0;
 }
 
-.btn {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #d0d3d9;
-  background: #fff;
+/* ---------- Buttons ---------- */
+
+button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
-.btn:hover {
-  background: #f0f1f3;
+button:active {
+  transform: translateY(1px);
 }
 
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.btn-primary {
-  background: #2563eb;
-  border-color: #2563eb;
+/* Primary actions: Add Category / Add Expense */
+button {
+  background: var(--navy);
   color: #fff;
 }
 
-.btn-primary:hover {
-  background: #1d4ed8;
+button:hover {
+  background: var(--navy-light);
 }
 
-.btn-danger {
-  color: #b91c1c;
-  border-color: #f0b5b5;
+/* Give the primary "Add" buttons the teal treatment.
+   Falls back gracefully if button text differs. */
+button[type="submit"],
+form button {
+  background: var(--teal);
+  color: var(--navy);
 }
 
-.btn-danger:hover {
-  background: #fdecec;
+form button:hover {
+  background: var(--teal-dark);
+  color: #fff;
 }
 
-.btn-small {
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  margin-left: 6px;
+/* Edit buttons — quiet, secondary style */
+table button:first-of-type {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  font-size: 13px;
 }
 
-.month-filter-row {
+table button:first-of-type:hover {
+  border-color: var(--navy);
+  background: var(--bg);
+}
+
+/* Delete buttons — everywhere, including the category list */
+button:last-of-type,
+table button:last-of-type {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid transparent;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+button:last-of-type:hover,
+table button:last-of-type:hover {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+/* Disabled delete buttons (category has linked expenses) */
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+}
+
+/* ---------- Categories list ---------- */
+
+ul {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.totals-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.totals-item {
-  display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
 }
 
-.totals-item:last-child {
+li:last-child {
   border-bottom: none;
 }
 
-.totals-amount {
+/* ---------- Totals by category ---------- */
+/* Rows showing "Category — €amount" */
+
+.total-row,
+li.total-row {
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
 }
 
-.expense-table {
+/* ---------- Table (Expenses) ---------- */
+
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 16px;
+  font-size: 13.5px;
 }
 
-.expense-table th,
-.expense-table td {
+thead th {
   text-align: left;
-  padding: 8px;
-  border-bottom: 1px solid #eee;
-  font-size: 0.9rem;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding: 0 8px 10px;
+  border-bottom: 2px solid var(--navy);
 }
 
-.amount-cell {
+tbody td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: var(--bg);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Amount column: right-align, monospaced numerals, navy emphasis */
+td:nth-last-child(2) {
+  text-align: right;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  color: var(--navy);
+}
+
+/* ---------- Empty states ---------- */
+
+p:empty,
+.empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 680px) {
+  body {
+    padding: 24px 12px 60px;
+  }
+
+  body > div,
+  body > section {
+    padding: 18px 16px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: none;
+    padding: 4px 0;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
