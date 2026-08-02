@@ -71,11 +71,11 @@ function validateCategoryName(name, existingCategories) {
 function validateExpenseInput({ categoryId, amount, expenseDate }, categories) {
   const errors = {};
 
-  if (categoryId === null || categoryId === undefined || categoryId === '') {
-    errors.categoryId = 'Please select a category.';
-  } else if (!(categories || []).some((c) => String(c.id) === String(categoryId))) {
-    errors.categoryId = 'Please select a valid category.';
-  }
+ // if (categoryId === null || categoryId === undefined || categoryId === '') {
+ //   errors.categoryId = 'Please select a category.';
+ // } else if (!(categories || []).some((c) => String(c.id) === String(categoryId))) {
+  //  errors.categoryId = 'Please select a valid category.';
+ // }
 
   if (amount === null || amount === undefined || String(amount).trim() === '') {
     errors.amount = 'Amount is required.';
